@@ -1,0 +1,298 @@
+---
+title: "Daten visualisieren 2"
+name: "Füge deinen Namen hizu"
+date: "Füge ein Datum hinzu"
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+editor_options: 
+  chunk_output_type: console
+---
+
+# Lade Packages
+
+```{r}
+
+library(tidyverse)
+library(palmerpenguins)
+
+```
+
+# Daten kennenlernen
+
+## Penguins
+
+```{r}
+
+glimpse(penguins)
+str(penguins)
+nrow(penguins)
+ncol(penguins)
+penguins
+
+```
+
+# ggplot2
+
+## Argumente
+
+```{r}
+
+ggplot(data = penguins, 
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() 
+
+```
+
+## Visuelle Eigenschaften (Aesthetics) Optionen
+
+- colour
+- shape
+- size
+- alpha (Transparenz)
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species, 
+           shape = species,
+           size = body_mass_g,
+           alpha = flipper_length_mm)) +
+  geom_point() 
+```
+
+## Mapping (einer visuelle Eigenschaft) vs. Setting (einer visuellen Eigenschaft)
+
+```{r mapping-setting1}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           size = body_mass_g,
+           alpha = flipper_length_mm)) +
+  geom_point()
+
+```
+
+
+```{r mapping-setting2}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point(size = 5, alpha = 0.5)
+
+```
+
+## Faceting
+
+- facet_grid()
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point() +
+  facet_grid(species ~ island)
+
+
+```
+
+### Übung 1
+
+In den nächsten Code-chunks habe ich bereits Code für dich vorbereitet. Beschreibe was in den Plots vorgeht und wie der Code in Beziehung zum Output steht.
+
+**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(species ~ sex)
+
+```
+
+**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(sex ~ species)
+
+```
+
+**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm)) + 
+  geom_point() +
+  facet_wrap(~ species)
+
+```
+
+**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_depth_mm,
+           y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(. ~ species)
+
+
+```
+
+**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm)) + 
+  geom_point() +
+  facet_wrap(~ species)
+
+```
+
+**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm)) + 
+  geom_point() +
+  facet_wrap(~ species, ncol = 2)
+
+```
+
+## Skalierung
+
+- scale_color_viridis
+
+```{r scale-viridis}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species)) +
+  geom_point() +
+  scale_color_viridis_d()
+
+```
+
+- scale_color_brewer
+
+```{r scale-brewer}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species)) +
+  geom_point() +
+  scale_color_brewer(type = "qualitative", palette = "Set1")
+
+```
+
+- scale_color_manual
+
+```{r}
+
+# Farben mit Namen
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species)) +
+  geom_point() +
+  scale_color_manual(values = c("red", "blue", "green"))
+
+# Hex colors
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species)) +
+  geom_point() +
+  scale_color_manual(values = c('#9EB0FFFF', '#180B09FF', '#FFACACFF'))
+
+
+```
+
+
+- scale_x_continuous
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species)) +
+  geom_point() +
+  scale_color_viridis_d() +
+  scale_x_continuous(breaks = seq(0, 70, 5), limits = c(0, 70)) +
+  scale_y_continuous(breaks = seq(0, 30, 2.5), limits = c(0, 30))
+
+seq(from = 0, to = 70, by = 5)
+
+c(0, 70)
+
+
+```
+
+
+
+### Übung 2
+
+**Fülle die Lücken aus**
+
+- Nutze den penguins Datensatz 
+- Ordne die Variable 'island' der x-Achse und die Variable 'species' einer Farbskalierung mit 'island' auf der x-Achse
+- Nutze Faceting und lege die Variable 'sex' auf die Reihen und die Variable 'species' auf die Spalten
+- Nutze die colorbrewer Funktion um die Farben anzupassen
+- Entferne die Legende (**Tipp:** Nutze die Suchmaschine deiner Wahl "How to remove the legend in ggplot2 tidyverse")
+
+```{r, eval=FALSE}
+
+ggplot(___, 
+       ___(x = ___,
+           ___ = species)) +
+  geom____() +
+  facet_grid(___ ~ ___) +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  ___(___ = "none")
+
+```
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = island,
+           fill = species)) +
+  geom_bar() +
+  facet_grid(sex ~ species) +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  theme(legend.position =  "none")
+
+```
+
+# Git commit / push 
+
+Du kannst jederzeit einen Git commit durchführen und deine Änderungen auf GitHub pushen. Mache dies spätestens am Ende dieses Praktikums nachdem du sichergestellt hast, dass deine R Markdown Datei zu einer HTML Datei rendert. 
+
+**Hinweis:** Der Begriff Rendern (Engl. to render; zu Deutsch: Bildsynthese) bezeichnet die Erstellung einer Grafik aus Rohdaten (wie z. B. Geoinformationen) oder einer Skizze. [Quelle: Wikipedia](https://de.wikipedia.org/wiki/Rendern_%28Design%29)
