@@ -50,3 +50,7 @@ po/*~
 
 # ignore _files folder
 *_files
+
+# Renviron
+
+*.Renviron
