@@ -15,6 +15,7 @@ editor_options:
 ```{r}
 
 library(tidyverse)
+library(palmerpenguins)
 
 ```
 
@@ -65,6 +66,10 @@ library(tidyverse)
 
 
 ```
+
+## Dokument speichern 
+
+Du kannst zwischenzeitlich immer mal wieder dein Dokument speichern. Ich habe es mir angewöhnt regelmässig die Tastenkombination "Cmd + S" (Mac) / "Ctrl + S" (Windows) zu nutzen. 
 
 ### Übung 1
 
@@ -145,11 +150,28 @@ ggplot(penguins,
 
 ## Skalierung
 
-
-
 ### Übung 2
 
+**Fülle die Lücken aus**
 
+- Nutze den penguins Datensatz 
+- Ordne die Variable 'island' der x-Achse zu 
+- Ordne die Variable 'species' einer Farbskalierung zu
+- Nutze Faceting und lege die Variable 'sex' auf die Reihen und die Variable 'species' auf die Spalten
+- Nutze die colorbrewer Funktion um die Farben anzupassen
+- Entferne die Legende (**Tipp:** Nutze die Suchmaschine deiner Wahl "How to remove the legend in ggplot2 tidyverse")
+
+```{r, eval=FALSE}
+
+ggplot(___, 
+       ___(x = ___,
+           ___ = species)) +
+  geom____() +
+  facet_grid(___ ~ ___) +
+  scale_fill_brewer(type = "qual", palette = "Set2") +
+  ___(___ = "none")
+
+```
 
 # Git commit / Git push 
 
