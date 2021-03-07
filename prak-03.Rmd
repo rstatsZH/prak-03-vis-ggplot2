@@ -58,6 +58,7 @@ editor_options:
 
 ## Faceting
 
+<<<<<<< HEAD
 ```{r facet-grid}
 
 
@@ -77,7 +78,7 @@ editor_options:
 
 Du kannst deine R Markdown Datei zwischenzeitlich immer mal Dokument speichern + stricken. Ich habe es mir angewöhnt regelmässig die Tastenkombination "Cmd + S" (Mac) / "Ctrl + S" (Windows) zu nutzen. 
 
-## Git commit / Git push
+## Git commit 
 
 Wenn dein Dokument ohne Fehlermeldungen gestrickt werden kann, dann ist es hilfreich zu diesem Zeitpunkt auch einen "Git commit" zu machen. Dies sind die Versionen deines Dokuments.
 
