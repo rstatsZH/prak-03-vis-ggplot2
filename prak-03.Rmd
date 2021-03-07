@@ -1,5 +1,5 @@
 ---
-title: "Daten visualisieren 2"
+title: "Praktikum 03"
 name: "Füge deinen Namen hizu"
 date: "Füge ein Datum hinzu"
 output: 
@@ -14,9 +14,6 @@ editor_options:
 
 ```{r}
 
-library(tidyverse)
-library(palmerpenguins)
-
 ```
 
 # Daten kennenlernen
@@ -29,13 +26,13 @@ library(palmerpenguins)
 
 # R Package ggplot2
 
-## Argumente
+## Funktionen, Argumente und Variablen
 
 ```{r}
 
 ```
 
-## Visuelle Eigenschaften (Aesthetics) Optionen
+## Visuelle Eigenschaften (Aesthetics) 
 
 - colour
 - shape
@@ -61,120 +58,39 @@ library(palmerpenguins)
 
 ## Faceting
 
-```{r}
+```{r facet-grid}
 
 
-
-```
-
-## Dokument speichern 
-
-Du kannst zwischenzeitlich immer mal wieder dein Dokument speichern. Ich habe es mir angewöhnt regelmässig die Tastenkombination "Cmd + S" (Mac) / "Ctrl + S" (Windows) zu nutzen. 
-
-### Übung 1
-
-In den nächsten Code-chunks habe ich bereits Code für dich vorbereitet. Beschreibe was in den Plots vorgeht und wie der Code in Beziehung zum Output steht.
-
-**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
-
-```{r}
-
-ggplot(penguins, 
-       aes(x = bill_depth_mm, 
-           y = bill_length_mm)) + 
-  geom_point() +
-  facet_grid(species ~ sex)
-
-```
-
-**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
-
-```{r}
-
-ggplot(penguins, 
-       aes(x = bill_depth_mm, 
-           y = bill_length_mm)) + 
-  geom_point() +
-  facet_grid(sex ~ species)
-
-```
-
-**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
-
-```{r}
-
-ggplot(penguins, 
-       aes(x = bill_depth_mm, 
-           y = bill_length_mm)) + 
-  geom_point() +
-  facet_wrap(~ species)
-
-```
-
-**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
-
-```{r}
-
-ggplot(penguins, 
-       aes(x = bill_depth_mm,
-           y = bill_length_mm)) + 
-  geom_point() +
-  facet_grid(. ~ species)
-
-
-```
-
-**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
-
-```{r}
-
-ggplot(penguins, 
-       aes(x = bill_depth_mm, 
-           y = bill_length_mm)) + 
-  geom_point() +
-  facet_wrap(~ species)
-
-```
-
-**Lösche diesen Text und beschreibe was in den Plots und im Code vorgeht**
-
-```{r}
-
-ggplot(penguins, 
-       aes(x = bill_depth_mm, 
-           y = bill_length_mm)) + 
-  geom_point() +
-  facet_wrap(~ species, ncol = 2)
 
 ```
 
 ## Skalierung
 
-### Übung 2
+- scale_color_viridis
+- scale_color_brewer
+- scale_color_manual
+- scale_x_continuous
 
-**Fülle die Lücken aus**
+# Änderungen speichern
 
-- Nutze den penguins Datensatz 
-- Ordne die Variable 'island' der x-Achse zu 
-- Ordne die Variable 'species' einer Farbskalierung zu
-- Nutze Faceting und lege die Variable 'sex' auf die Reihen und die Variable 'species' auf die Spalten
-- Nutze die colorbrewer Funktion um die Farben anzupassen
-- Entferne die Legende (**Tipp:** Nutze die Suchmaschine deiner Wahl "How to remove the legend in ggplot2 tidyverse")
+## Speichern + Stricken (knit)
 
-```{r, eval=FALSE}
+Du kannst deine R Markdown Datei zwischenzeitlich immer mal Dokument speichern + stricken. Ich habe es mir angewöhnt regelmässig die Tastenkombination "Cmd + S" (Mac) / "Ctrl + S" (Windows) zu nutzen. 
 
-ggplot(___, 
-       ___(x = ___,
-           ___ = species)) +
-  geom____() +
-  facet_grid(___ ~ ___) +
-  scale_fill_brewer(type = "qual", palette = "Set2") +
-  ___(___ = "none")
+## Git commit / Git push
 
-```
+Wenn dein Dokument ohne Fehlermeldungen gestrickt werden kann, dann ist es hilfreich zu diesem Zeitpunkt auch einen "Git commit" zu machen. Dies sind die Versionen deines Dokuments.
 
-# Git commit / Git push 
+1. Im Ansichtsfenster oben rechts, klick auf 'Git'
+2. Setze ein Häkchen bei allen Köstchen in der Spalte 'Stages'
+3. Klick auf 'Commit' und ein neues Fenster wir sich öffnen 
+4. Füge eine Commit Nachricht hinzu
+5. Klick auf 'Commit' um die Nachricht abzuspeichern
 
-Du kannst jederzeit einen Git commit durchführen und deine Änderungen auf GitHub pushen. Mache dies spätestens am Ende dieses Praktikums nachdem du sichergestellt hast, dass deine R Markdown Datei zu einer HTML Datei rendert. 
+## Git push 
 
-**Hinweis:** Der Begriff Rendern (Engl. to render; zu Deutsch: Bildsynthese) bezeichnet die Erstellung einer Grafik aus Rohdaten (wie z. B. Geoinformationen) oder einer Skizze. [Quelle: Wikipedia](https://de.wikipedia.org/wiki/Rendern_%28Design%29)
+Du brauchst nicht unbedingt nach jedem "Git commit" auch ein "Git push" machen, aber es empfiehlt sich dies spätestens am Ende dieses Praktikums zu machen nachdem du sichergestellt hast, dass deine R Markdown Datei fehlerfrei gestrickt werden kann. 
+
+1. Führe den letzten "Git commit" aller Dateien aus
+1. Klick auf 'Push' im Git Ansichtsfenster um den Status deines Projektes auf GitHub zu pushen
+
