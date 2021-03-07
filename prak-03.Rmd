@@ -58,7 +58,6 @@ editor_options:
 
 ## Faceting
 
-<<<<<<< HEAD
 ```{r facet-grid}
 
 
