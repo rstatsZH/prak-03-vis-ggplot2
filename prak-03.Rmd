@@ -64,12 +64,11 @@ editor_options:
 
 ```
 
-## Skalierung
+## Eine Skala ersetzen - Farbskalen
 
 - scale_color_viridis
 - scale_color_brewer
 - scale_color_manual
-- scale_x_continuous
 
 # Änderungen speichern
 
