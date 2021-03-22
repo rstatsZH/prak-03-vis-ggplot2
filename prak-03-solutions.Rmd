@@ -1,0 +1,301 @@
+---
+title: "Daten visualisieren 2"
+name: "Füge deinen Namen hizu"
+date: "Füge ein Datum hinzu"
+output: 
+  html_document: 
+    toc: yes
+    toc_float: yes
+    highlight: espresso
+    theme: flatly
+    number_sections: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+# Lade Packages
+
+```{r}
+
+library(tidyverse)
+library(palmerpenguins)
+
+```
+
+# Daten kennenlernen
+
+## Penguins
+
+```{r}
+
+glimpse(penguins)
+nrow(penguins)
+ncol(penguins)
+penguins
+
+```
+
+# R Package ggplot2
+
+## Argumente
+
+```{r}
+
+ggplot(data = penguins, 
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     colour = species)) +
+  geom_point() 
+
+```
+
+## Visuelle Eigenschaften (Aesthetics) Optionen
+
+- colour
+- shape
+- size
+- alpha (Transparenz)
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species, 
+           shape = species,
+           size = body_mass_g,
+           alpha = flipper_length_mm)) +
+  geom_point() 
+```
+
+## Mapping (einer visuelle Eigenschaft) vs. Setting (einer visuellen Eigenschaft)
+
+```{r mapping-setting1}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           size = body_mass_g,
+           alpha = flipper_length_mm)) +
+  geom_point()
+
+```
+
+
+```{r mapping-setting2}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point(size = 5, alpha = 0.5)
+
+```
+
+## Faceting
+
+- facet_grid()
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point() +
+  facet_grid(species ~ island)
+
+
+```
+
+## Skalierung
+
+### Eine Skale ersetzen - Farben
+
+- scale_color_viridis
+
+```{r scale-viridis}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species)) +
+  geom_point() +
+  scale_color_viridis_d()
+
+```
+
+- scale_color_brewer
+
+```{r scale-brewer}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species)) +
+  geom_point() +
+  scale_color_brewer(type = "qualitative", palette = "Set1")
+
+```
+
+- scale_color_manual
+
+```{r}
+
+# Farben mit Namen
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species)) +
+  geom_point() +
+  scale_color_manual(values = c("red", "blue", "green"))
+
+# Hex colors
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species)) +
+  geom_point() +
+  scale_color_manual(values = c('#9EB0FFFF', '#180B09FF', '#FFACACFF'))
+
+
+```
+
+### Eine Skala ersetzen - Achsen
+
+- scale_x_continuous
+
+```{r}
+
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           colour = species)) +
+  geom_point() +
+  scale_color_viridis_d() +
+  scale_x_continuous(breaks = seq(0, 70, 5), limits = c(0, 70)) +
+  scale_y_continuous(breaks = seq(0, 30, 2.5), limits = c(0, 30))
+
+# Vektor von 0 bis 70 in fünfer Schritten
+seq(from = 0, to = 70, by = 5)
+
+# Ein Vektor mit den Zahlen 0, 35 und 70
+c(0, 35, 70)
+
+# Ein Vektor von 0 bis 70
+0:70
+
+
+```
+
+- scale_x_date
+
+```{r}
+
+letzter_monat <- Sys.Date() - 0:29
+temp_vek <- runif(n = 30, min = -10, max = 10)
+
+tib <- tibble(
+  datum = letzter_monat,
+  temperatur = temp_vek)
+
+# Daten Skalierung 
+
+## Schritt 1
+ggplot(data = tib,
+       mapping =  aes(x = datum, 
+                      y = temperatur)) +
+  geom_line() + 
+
+
+## Schritt 2
+ggplot(data = tib,
+       mapping =  aes(x = datum, 
+                      y = temperatur)) +
+  geom_line() + 
+  scale_x_date(date_labels = "%b %d")
+
+# ?scale_x_date
+
+## Schritt 3
+ggplot(data = tib,
+       mapping =  aes(x = datum, 
+                      y = temperatur)) +
+  geom_line() + 
+  scale_x_date(date_labels = "%W", date_breaks = "1 week")
+
+
+## Schritt 4
+ggplot(data = tib,
+       mapping =  aes(x = datum, 
+                      y = temperatur)) +
+  geom_line() + 
+  coord_flip() +
+  scale_x_date(date_labels = "%B %d", date_breaks = "1 day") +
+  theme_minimal() +
+  theme(panel.grid.minor.y = element_blank())
+
+```
+
+### Eine Skala ersetzen - Formen (shape)
+
+- scale_shape_manual
+
+```{r}
+
+# Standard shapes
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+         shape = species)) +
+  geom_point() 
+
+# Shapes angepasst
+ggplot(penguins, 
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+         shape = species)) +
+  geom_point(size = 5, fill = "red") +
+  scale_shape_manual(values = c(0, 15, 22))
+
+```
+
+
+```{r}
+# Welche Shapes gibt es
+# Code aus Hilfedatei kopiert
+# ?scale_shape
+
+df_shapes <- data.frame(shape = 0:24)
+
+ggplot(df_shapes, aes(0, 0, shape = shape)) +
+  geom_point(aes(shape = shape), size = 5, fill = 'red') +
+  scale_shape_identity() +
+  facet_wrap(~shape) +
+  theme_void()
+```
+
+
+
+# Änderungen speichern
+
+## Speichern + Stricken (knit)
+
+Du kannst deine R Markdown Datei zwischenzeitlich immer mal Dokument speichern + stricken. Ich habe es mir angewöhnt regelmässig die Tastenkombination "Cmd + S" (Mac) / "Ctrl + S" (Windows) zu nutzen. 
+
+## Git commit 
+
+Wenn dein Dokument ohne Fehlermeldungen gestrickt werden kann, dann ist es hilfreich zu diesem Zeitpunkt auch einen "Git commit" zu machen. Dies sind die Versionen deines Dokuments.
+
+1. Im Ansichtsfenster oben rechts, klick auf 'Git'
+2. Setze ein Häkchen bei allen Köstchen in der Spalte 'Stages'
+3. Klick auf 'Commit' und ein neues Fenster wir sich öffnen 
+4. Füge eine Commit Nachricht hinzu
+5. Klick auf 'Commit' um die Nachricht abzuspeichern
+
+## Git push 
+
+Du brauchst nicht unbedingt nach jedem "Git commit" auch ein "Git push" machen, aber es empfiehlt sich dies spätestens am Ende dieses Praktikums zu machen nachdem du sichergestellt hast, dass deine R Markdown Datei fehlerfrei gestrickt werden kann. 
+
+1. Führe den letzten "Git commit" aller Dateien aus
+1. Klick auf 'Push' im Git Ansichtsfenster um den Status deines Projektes auf GitHub zu pushen
