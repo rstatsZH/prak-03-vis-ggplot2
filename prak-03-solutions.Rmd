@@ -275,8 +275,6 @@ ggplot(df_shapes, aes(0, 0, shape = shape)) +
   theme_void()
 ```
 
-
-
 # Änderungen speichern
 
 ## Speichern + Stricken (knit)

@@ -64,12 +64,6 @@ editor_options:
 
 ```
 
-## Eine Skala ersetzen - Farbskalen
-
-- scale_color_viridis
-- scale_color_brewer
-- scale_color_manual
-
 # Änderungen speichern
 
 ## Speichern + Stricken (knit)
