@@ -91,7 +91,7 @@ ggplot(penguins,
 
 ```
 
-## Faceting
+## Facetting
 
 - facet_grid()
 
@@ -205,7 +205,7 @@ tib <- tibble(
 ggplot(data = tib,
        mapping =  aes(x = datum, 
                       y = temperatur)) +
-  geom_line() + 
+  geom_line()
 
 
 ## Schritt 2
@@ -262,7 +262,7 @@ ggplot(penguins,
 
 
 ```{r}
-# Welche Shapes gibt es
+# Welche Shapes gibt es?
 # Code aus Hilfedatei kopiert
 # ?scale_shape
 
@@ -279,21 +279,21 @@ ggplot(df_shapes, aes(0, 0, shape = shape)) +
 
 ## Speichern + Stricken (knit)
 
-Du kannst deine R Markdown Datei zwischenzeitlich immer mal Dokument speichern + stricken. Ich habe es mir angewöhnt regelmässig die Tastenkombination "Cmd + S" (Mac) / "Ctrl + S" (Windows) zu nutzen. 
+Du kannst deine R Markdown Datei zwischenzeitlich immer mal Dokument speichern + stricken. Ich habe es mir angewöhnt, regelmässig die Tastenkombination `Cmd + S` (Mac) / `Ctrl + S` (Windows) zu nutzen. 
 
 ## Git commit 
 
-Wenn dein Dokument ohne Fehlermeldungen gestrickt werden kann, dann ist es hilfreich zu diesem Zeitpunkt auch einen "Git commit" zu machen. Dies sind die Versionen deines Dokuments.
+Wenn dein Dokument ohne Fehlermeldungen gestrickt werden kann, dann ist es hilfreich, zu diesem Zeitpunkt auch einen `Git commit` zu machen. Dies sind die Versionen deines Dokuments.
 
-1. Im Ansichtsfenster oben rechts, klick auf 'Git'
-2. Setze ein Häkchen bei allen Köstchen in der Spalte 'Stages'
-3. Klick auf 'Commit' und ein neues Fenster wir sich öffnen 
-4. Füge eine Commit Nachricht hinzu
-5. Klick auf 'Commit' um die Nachricht abzuspeichern
+1. Im Ansichtsfenster oben rechts, klick auf `Git`.
+2. Setze ein Häkchen bei allen Kästchen in der Spalte `Stages`.
+3. Klick auf `Commit` und ein neues Fenster wird sich öffnen. 
+4. Füge eine Commit-Nachricht hinzu.
+5. Klick auf `Commit`, um die Nachricht abzuspeichern.
 
 ## Git push 
 
-Du brauchst nicht unbedingt nach jedem "Git commit" auch ein "Git push" machen, aber es empfiehlt sich dies spätestens am Ende dieses Praktikums zu machen nachdem du sichergestellt hast, dass deine R Markdown Datei fehlerfrei gestrickt werden kann. 
+Du brauchst nicht unbedingt nach jedem `Git commit` auch ein `Git push` machen, aber es empfiehlt sich, dies spätestens am Ende dieses Praktikums zu machen, nachdem du sichergestellt hast, dass deine R Markdown Datei fehlerfrei gestrickt werden kann. 
 
-1. Führe den letzten "Git commit" aller Dateien aus
-1. Klick auf 'Push' im Git Ansichtsfenster um den Status deines Projektes auf GitHub zu pushen
+1. Führe den letzten `Git commit` aller Dateien aus.
+2. Klick auf `Push` im Git-Ansichtsfenster, um den Status deines Projektes auf GitHub zu pushen.
