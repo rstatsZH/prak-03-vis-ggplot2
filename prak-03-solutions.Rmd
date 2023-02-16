@@ -58,13 +58,13 @@ ggplot(data = penguins,
 
 ```{r}
 
-ggplot(penguins, 
-       aes(x = bill_length_mm,
-           y = bill_depth_mm,
-           colour = species, 
-           shape = species,
-           size = body_mass_g,
-           alpha = flipper_length_mm)) +
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     colour = species, 
+                     shape = species,
+                     size = body_mass_g,
+                     alpha = flipper_length_mm)) +
   geom_point() 
 ```
 
@@ -72,11 +72,11 @@ ggplot(penguins,
 
 ```{r mapping-setting1}
 
-ggplot(penguins, 
-       aes(x = bill_length_mm,
-           y = bill_depth_mm,
-           size = body_mass_g,
-           alpha = flipper_length_mm)) +
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     size = body_mass_g,
+                     alpha = flipper_length_mm)) +
   geom_point()
 
 ```
@@ -84,22 +84,22 @@ ggplot(penguins,
 
 ```{r mapping-setting2}
 
-ggplot(penguins, 
-       aes(x = bill_length_mm,
-           y = bill_depth_mm)) +
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm,
+                     y = bill_depth_mm)) +
   geom_point(size = 5, alpha = 0.5)
 
 ```
 
-## Facetting
+## Facetting (**bis inklusive hier in Woche 2**)
 
 - facet_grid()
 
 ```{r}
 
-ggplot(penguins, 
-       aes(x = bill_length_mm,
-           y = bill_depth_mm)) +
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm,
+                     y = bill_depth_mm)) +
   geom_point() +
   facet_grid(species ~ island)
 
@@ -114,10 +114,10 @@ ggplot(penguins,
 
 ```{r scale-viridis}
 
-ggplot(penguins, 
-       aes(x = bill_length_mm,
-           y = bill_depth_mm,
-           colour = species)) +
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     colour = species)) +
   geom_point() +
   scale_color_viridis_d()
 
@@ -127,10 +127,10 @@ ggplot(penguins,
 
 ```{r scale-brewer}
 
-ggplot(penguins, 
-       aes(x = bill_length_mm,
-           y = bill_depth_mm,
-           colour = species)) +
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     colour = species)) +
   geom_point() +
   scale_color_brewer(type = "qualitative", palette = "Set1")
 
@@ -142,19 +142,19 @@ ggplot(penguins,
 
 # Farben mit Namen
 
-ggplot(penguins, 
-       aes(x = bill_length_mm,
-           y = bill_depth_mm,
-           colour = species)) +
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     colour = species)) +
   geom_point() +
   scale_color_manual(values = c("red", "blue", "green"))
 
 # Hex colors
 
-ggplot(penguins, 
-       aes(x = bill_length_mm,
-           y = bill_depth_mm,
-           colour = species)) +
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm,
+                     y = bill_depth_mm,
+                     colour = species)) +
   geom_point() +
   scale_color_manual(values = c('#9EB0FFFF', '#180B09FF', '#FFACACFF'))
 
@@ -247,14 +247,14 @@ ggplot(data = tib,
 ggplot(penguins, 
        aes(x = bill_length_mm,
            y = bill_depth_mm,
-         shape = species)) +
+           shape = species)) +
   geom_point() 
 
 # Shapes angepasst
 ggplot(penguins, 
        aes(x = bill_length_mm,
            y = bill_depth_mm,
-         shape = species)) +
+           shape = species)) +
   geom_point(size = 5, fill = "red") +
   scale_shape_manual(values = c(0, 15, 22))
 
